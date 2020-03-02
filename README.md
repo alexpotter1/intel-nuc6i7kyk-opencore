@@ -3,7 +3,7 @@
 ![macOS-catalina](Resources/about-mac.png)
 
 ## What is this?
-This repository tracks an OpenCore bootloader configuration for the Intel Skull Canyon NUC.
+This repository tracks an OpenCore bootloader configuration for the Intel Skull Canyon NUC.<br />
 This configuration was created by me with help from others (see credits) to allow the NUC to run macOS.
 If you wish to try and run macOS on your Skull Canyon, you can start here.
 
@@ -33,6 +33,7 @@ What works:
   * Skylake, iMac17,1 SMBIOS
   * Custom CPU SSDT from `ssdtPRgen`
   * Haven't explicitly configured HWP (Intel Speed Shift) - may do so in future
+  * Idles at 0.8GHz *(not technically base freq of 500MHz for i7-6770HQ, but the NUC is plugged in all the time)*
 * Bluetooth (credit to the kext: `IntelBluetoothFirmware`)
 * Gigabit Ethernet (credit to the kext: `IntelMausiEthernet`)
 * NVMe
@@ -107,6 +108,8 @@ Some people who were invaluable in helping me get setup, whether through informa
 * [This OpenCore Vanilla guide - Skylake](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/)
 * [zxystd](https://github.com/zxystd/IntelBluetoothFirmware) for his awesome Intel Bluetooth firmware kext
 * [Mieze](https://github.com/Mieze/IntelMausiEthernet) for the amazing Intel Ethernet kext, without this, the NUC is kinda useless
+* [CorpNewt](https://github.com/CorpNewt) for the very nice GenSMBIOS tool
+* [Piker-Alpha](https://github.com/Piker-Alpha/) for `ssdtPRgen.sh` to create a custom SSDT for power management
 * Probably many more talented hackintosh community members who I've missed when researching for hours and hours
   * Please let me know if I didn't include you - absences are completely accidental, promise :P
 
