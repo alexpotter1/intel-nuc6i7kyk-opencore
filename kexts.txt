@@ -3,5 +3,6 @@ Lilu	acidanthera
 AppleALC	acidanthera
 NVMeFix	acidanthera
 VirtualSMC	acidanthera
+CPUFriend	acidanthera
 IntelBluetoothFirmware	zxystd
 IntelMausiEthernet	Mieze

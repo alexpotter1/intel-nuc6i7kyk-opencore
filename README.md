@@ -31,8 +31,7 @@ What works:
     * I use an external USB DAC so this isn't a priority to fix for me, but if you know how, raise an issue/fork!
 * Native CPU/iGPU power management
   * Skylake, iMac17,1 SMBIOS
-  * Custom CPU SSDT from `ssdtPRgen`
-  * Haven't explicitly configured HWP (Intel Speed Shift) - may do so in future
+  * Custom CPU SSDT from `ssdtPRgen` and CPUFriend to dynamically patch X86PlatformPlugin
   * Idles at 0.8GHz *(not technically base freq of 500MHz for i7-6770HQ, but the NUC is plugged in all the time)*
 * Bluetooth (credit to the kext: `IntelBluetoothFirmware`)
 * Gigabit Ethernet (credit to the kext: `IntelMausiEthernet`)
@@ -42,7 +41,7 @@ What works:
 * iCloud/App Store/iMessage functionality (with a well-formed SMBIOS, see below)
 
 What doesn't (yet) work:
-* Proper sleep - kernel panics
+* Proper sleep - goes to sleep correctly, but kernel panics on wake
 * Display hotplug - kernel panics
   * Can be fixed with WEG framebuffer patch but this seemed to induce graphical glitching for me, so I disabled
 * Thunderbolt 3 (may fix in future with an approach similar to Hades Canyon patches?)
