@@ -1,0 +1,7 @@
+WhateverGreen	acidanthera
+Lilu	acidanthera
+AppleALC	acidanthera
+NVMeFix	acidanthera
+VirtualSMC	acidanthera
+IntelBluetoothFirmware	zxystd
+IntelMausiEthernet	Mieze
