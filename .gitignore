@@ -1,2 +1,7 @@
 GenSMBIOS/
 .DS_Store
+*.aml
+*.kext
+
+iasl
+iasl.zip

@@ -52,4 +52,7 @@ fi
 echo "Fetching required kexts..."
 /bin/bash get-kexts.sh
 
+echo "Building ACPI..."
+/bin/bash build_acpi.sh
+
 echo "Last step: Run export.sh to copy to your ESP (as sudo!)"
