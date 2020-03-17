@@ -41,7 +41,7 @@ What works:
 * iCloud/App Store/iMessage functionality (with a well-formed SMBIOS, see below)
 
 What doesn't (yet) work:
-* Proper sleep - goes to sleep correctly, but kernel panics on wake
+* Proper sleep - goes to sleep correctly, but black screens on wake (WEG issue maybe, not sure)
 * Display hotplug - kernel panics
   * Can be fixed with WEG framebuffer patch but this seemed to induce graphical glitching for me, so I disabled
 * Thunderbolt 3 (may fix in future with an approach similar to Hades Canyon patches?)
