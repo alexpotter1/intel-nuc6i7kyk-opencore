@@ -16,3 +16,16 @@ do
         (cd EFI/OC/Kexts; find . -name "$(echo ${kext_lines[0]} | cut -c1-5)*.zip" -type f -exec unzip -o "{}" "${kext_lines[0]}.kext/*" \;; find . -name "$(echo ${kext_lines[0]} | cut -c1-5)*.zip" -type f -delete)
     fi
 done < kexts.txt
+
+# IntelMausiEthernet.kext doesn't have a GitHub release, so manually build it
+echo "Building IntelMausiEthernet from source..."
+cd EFI/OC/Kexts && git clone https://github.com/Mieze/IntelMausiEthernet.git
+cd IntelMausiEthernet
+# not sure if user has Xcode CLI tools installed, try and install anyway
+# not a problem if they already have it
+xcode-select --install 2> /dev/null
+xcodebuild -configuration Release
+mv build/Release/IntelMausiEthernet.kext ../
+cd ../
+rm -rf IntelMausiEthernet
+echo "Finished building kexts!"
