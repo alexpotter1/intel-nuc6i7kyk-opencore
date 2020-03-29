@@ -744,10 +744,6 @@
 			<dict>
 				<key>boot-args</key>
 				<string>-igfxlspcon agdpmod=vit9696 alcid=28</string>
-				<key>csr-active-config</key>
-				<data>
-				AAAAAA==
-				</data>
 			</dict>
 		</dict>
 	</dict>
