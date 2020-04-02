@@ -322,6 +322,8 @@
 				<string>Audio device</string>
 				<key>hda-gfx</key>
 				<string>onboard-1</string>
+				<key>alc-layout-id</key>
+				<data>IAAAAA==</data>
 				<key>layout-id</key>
 				<data>
 				BAAAAA==
@@ -743,7 +745,11 @@
 			<key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
 			<dict>
 				<key>boot-args</key>
+<<<<<<< HEAD
 				<string>-igfxlspcon agdpmod=vit9696 alcid=28</string>
+=======
+				<string>-igfxlspcon agdpmod=vit9696</string>
+>>>>>>> Fix sound with AppleALC
 			</dict>
 		</dict>
 	</dict>
