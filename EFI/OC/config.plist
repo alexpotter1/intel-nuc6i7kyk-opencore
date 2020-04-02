@@ -16,14 +16,6 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT for Skull Canyon - fake EC (modified by apotter)</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Path</key>
-				<string>SSDT-EC.aml</string>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>SSDT for Skull Canyon native power management (ssdtPRgen.sh)</string>
 				<key>Enabled</key>
 				<true/>
@@ -37,22 +29,6 @@
 				<true/>
 				<key>Path</key>
 				<string>SSDT-UIAC.aml</string>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>SSDT for Skull Canyon FixStateTransition (modified by apotter)</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Path</key>
-				<string>SSDT-FixStateTransition.aml</string>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>HPET _CRS (Needs _CRS to XCRS Rename)</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Path</key>
-				<string>SSDT-HPET.aml</string>
 			</dict>
 		</array>
 		<key>Patch</key>
@@ -73,6 +49,20 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
+				<string>change H_EC to EC</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				SF9FQw==
+				</data>
+				<key>Replace</key>
+				<data>
+				RUNfXw==
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
 				<string>change _OSI to XOSI</string>
 				<key>Enabled</key>
 				<true/>
@@ -89,7 +79,7 @@
 				<key>Comment</key>
 				<string>change SAT0 to SATA</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>
 				U0FUMA==
@@ -125,142 +115,6 @@
 				<key>Replace</key>
 				<data>
 				WFNUQQ==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>change _PTS to OPTS</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				X1BUUw==
-				</data>
-				<key>Replace</key>
-				<data>
-				T1BUUw==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>change _WAK to OWAK</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				X1dBSw==
-				</data>
-				<key>Replace</key>
-				<data>
-				T1dBSw==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>HPET _CRS to XCRS Rename</string>
-				<key>Count</key>
-				<integer>0</integer>
-				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				X0NSUwigGQ==
-				</data>
-				<key>Limit</key>
-				<integer>0</integer>
-				<key>Mask</key>
-				<data>
-				</data>
-				<key>OemTableId</key>
-				<data>
-				AAAAAA==
-				</data>
-				<key>Replace</key>
-				<data>
-				WENSUwigGQ==
-				</data>
-				<key>ReplaceMask</key>
-				<data>
-				</data>
-				<key>Skip</key>
-				<integer>0</integer>
-				<key>TableLength</key>
-				<integer>0</integer>
-				<key>TableSignature</key>
-				<data>
-				AAAAAA==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>RTC IRQ 8 Patch</string>
-				<key>Count</key>
-				<integer>0</integer>
-				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				IgABeQA=
-				</data>
-				<key>Limit</key>
-				<integer>0</integer>
-				<key>Mask</key>
-				<data>
-				</data>
-				<key>OemTableId</key>
-				<data>
-				AAAAAA==
-				</data>
-				<key>Replace</key>
-				<data>
-				IgAAeQA=
-				</data>
-				<key>ReplaceMask</key>
-				<data>
-				</data>
-				<key>Skip</key>
-				<integer>0</integer>
-				<key>TableLength</key>
-				<integer>0</integer>
-				<key>TableSignature</key>
-				<data>
-				AAAAAA==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>TIMR IRQ 0 Patch</string>
-				<key>Count</key>
-				<integer>0</integer>
-				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				IgEAeQA=
-				</data>
-				<key>Limit</key>
-				<integer>0</integer>
-				<key>Mask</key>
-				<data>
-				</data>
-				<key>OemTableId</key>
-				<data>
-				AAAAAA==
-				</data>
-				<key>Replace</key>
-				<data>
-				IgAAeQA=
-				</data>
-				<key>ReplaceMask</key>
-				<data>
-				</data>
-				<key>Skip</key>
-				<integer>0</integer>
-				<key>TableLength</key>
-				<integer>0</integer>
-				<key>TableSignature</key>
-				<data>
-				AAAAAA==
 				</data>
 			</dict>
 		</array>
@@ -633,13 +487,13 @@
 			<key>ExternalDiskIcons</key>
 			<false/>
 			<key>IncreasePciBarSize</key>
-			<true/>
+			<false/>
 			<key>LapicKernelPanic</key>
 			<false/>
 			<key>PanicNoKextDump</key>
 			<true/>
 			<key>PowerTimeoutKernelPanic</key>
-			<true/>
+			<false/>
 			<key>ThirdPartyDrives</key>
 			<false/>
 			<key>XhciPortLimit</key>
@@ -745,11 +599,7 @@
 			<key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
 			<dict>
 				<key>boot-args</key>
-<<<<<<< HEAD
-				<string>-igfxlspcon agdpmod=vit9696 alcid=28</string>
-=======
 				<string>-igfxlspcon agdpmod=vit9696</string>
->>>>>>> Fix sound with AppleALC
 			</dict>
 		</dict>
 	</dict>
@@ -762,7 +612,7 @@
 			<key>MLB</key>
 			<string>null</string>
 			<key>ROM</key>
-			<data>null</data>
+			<data>AQAAAA==</data>
 			<key>SpoofVendor</key>
 			<true/>
 			<key>SystemProductName</key>
