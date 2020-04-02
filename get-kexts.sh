@@ -28,4 +28,11 @@ xcodebuild -configuration Release
 mv build/Release/IntelMausiEthernet.kext ../
 cd ../
 rm -rf IntelMausiEthernet
+
+# Get UIA, no GitHub release
+echo "Downloading USBInjectAll.kext..."
+curl --silent -LOJ https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/RehabMan-USBInjectAll-2018-1108.zip
+find . -name "RehabMan-USBInjectAll*.zip" -type f -exec unzip -o "{}" "Release/USBInjectAll.kext/*" \;; find . -name "RehabMan-USBInjectAll*.zip" -type f -delete
+mv Release/USBInjectAll.kext .
+rm -r Release
 echo "Finished building kexts!"
