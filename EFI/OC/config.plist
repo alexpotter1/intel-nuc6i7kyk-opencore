@@ -35,20 +35,6 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>change GFX0 to IGPU</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				R0ZYMA==
-				</data>
-				<key>Replace</key>
-				<data>
-				SUdQVQ==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>change H_EC to EC</string>
 				<key>Enabled</key>
 				<true/>
@@ -181,15 +167,11 @@
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
 				<key>AAPL,GfxYTile</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 				<key>AAPL,ig-platform-id</key>
-				<data>
-				AAASGQ==
-				</data>
+				<data>BQA7GQ==</data>
 				<key>device-id</key>
-				<data>EhkAAA==</data>
+				<data>JxkAAA==</data>
 				<key>AAPL,slot-name</key>
 				<string>Internal@0,2,0</string>
 				<key>device_type</key>
@@ -198,7 +180,19 @@
 				<data>
 				AQAAAA==
 				</data>
+				<key>framebuffer-con0-enable</key>
+				<data>
+				AQAAAA==
+				</data>
+				<key>framebuffer-con0-pipe</key>
+				<data>
+				EgAAAA==
+				</data>
 				<key>enable-lspcon-support</key>
+				<data>
+				AQAAAA==
+				</data>
+				<key>framebuffer-con1-enable</key>
 				<data>
 				AQAAAA==
 				</data>
@@ -206,25 +200,29 @@
 				<data>
 				AQAAAA==
 				</data>
-				<key>framebuffer-con1-preferred-lspcon-mode</key>
+				<key>framebuffer-con1-pipe</key>
+				<data>
+				EgAAAA==
+				</data>
+				<key>framebuffer-con1-type</key>
+				<data>
+				AAgAAA==
+				</data>
+				<key>framebuffer-con2-enable</key>
 				<data>
 				AQAAAA==
 				</data>
-				<key>framebuffer-fbmem</key>
+				<key>framebuffer-con2-pipe</key>
 				<data>
-				AACQAA==
+				EgAAAA==
 				</data>
-				<key>framebuffer-patch-enable</key>
+				<key>framebuffer-con3-enable</key>
 				<data>
 				AQAAAA==
 				</data>
-				<key>framebuffer-stolenmem</key>
+				<key>framebuffer-con3-pipe</key>
 				<data>
-				AAAwAQ==
-				</data>
-				<key>framebuffer-unifiedmem</key>
-				<data>
-				AAAAgA==
+				EgAAAA==
 				</data>
 				<key>model</key>
 				<string>Intel Iris Pro Graphics 580</string>
@@ -569,7 +567,7 @@
 			<key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
 			<dict>
 				<key>boot-args</key>
-				<string>-igfxlspcon agdpmod=vit9696</string>
+				<string>agdpmod=vit9696</string>
 			</dict>
 		</dict>
 	</dict>
