@@ -22,9 +22,10 @@ What works:
   * Some customised framebuffer patching included...
   * Iris Pro 580 with DVMT pre-alloc
   * HDMI 2.0 4k enabled and working
-  * LSPCON support (both HDMI and mini-DP work at the same time)
+  * Multiple display support
   * No graphical glitching
-  * Iris Pro 580 login screen bug on full screen video fixed (GPU device id spoofed to Intel Iris 540)
+  * Iris Pro 580 login screen bug on full screen video fixed (GPU device id spoofed to Intel HD 530)
+  * Display hotplugging works
 * Onboard audio (Realtek ALC233)
   * Enabled with AppleALC, `alcid=32`, no distortion/weirdness
 * Native CPU/iGPU power management
@@ -40,10 +41,9 @@ What works:
 * FileVault works fully with latest OpenCore
 
 What doesn't (yet) work:
-* Proper sleep - goes to sleep correctly, but black screens on wake (WEG issue maybe, not sure)
-* Display hotplug - kernel panics
-  * Can be fixed with WEG framebuffer patch but this seemed to induce graphical glitching for me, so I disabled
+* Proper sleep (partially fixed with a182e791) - sleeps OK, wakes to black screen but power-cycling/hotplugging a display brings it back
 * Thunderbolt 3 (may fix in future with an approach similar to Hades Canyon patches?)
+  * Appears to work if the Thunderbolt device is connected at boot, but any hotplugging/sleep stops it from working
 * SD card reader (PCIe, unlikely to ever work)
 * TOSLINK optical jack (disabled in SSDT)
 * WiFi (macOS does not support Intel chipsets, unlikely to work until a kext is reverse-engineered)
