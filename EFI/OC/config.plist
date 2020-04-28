@@ -65,7 +65,7 @@
 				<key>Comment</key>
 				<string>change _DSM to XDSM</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>
 				X0RTTQ==
@@ -82,11 +82,11 @@
 				<true/>
 				<key>Find</key>
 				<data>
-				X1NUQQ==
+				WERDSS5fU1RB
 				</data>
 				<key>Replace</key>
 				<data>
-				WFNUQQ==
+				WERDSS5YU1RB
 				</data>
 			</dict>
 		</array>
@@ -278,59 +278,17 @@
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
-				<key>AAPL,GfxYTile</key>
-				<data>AQAAAA==</data>
 				<key>AAPL,ig-platform-id</key>
 				<data>BQA7GQ==</data>
 				<key>device-id</key>
-				<data>JxkAAA==</data>
-				<key>AAPL,slot-name</key>
-				<string>Internal@0,2,0</string>
-				<key>device_type</key>
-				<string>VGA compatible controller</string>
+				<data>EhkAAA==</data>
 				<key>enable-hdmi20</key>
 				<data>
 				AQAAAA==
 				</data>
-				<key>framebuffer-con0-enable</key>
+				<key>disable-agdc</key>
 				<data>
 				AQAAAA==
-				</data>
-				<key>framebuffer-con0-pipe</key>
-				<data>
-				EgAAAA==
-				</data>
-				<key>enable-lspcon-support</key>
-				<data>
-				AQAAAA==
-				</data>
-				<key>framebuffer-con1-enable</key>
-				<data>
-				AQAAAA==
-				</data>
-				<key>framebuffer-con1-has-lspcon</key>
-				<data>
-				AQAAAA==
-				</data>
-				<key>framebuffer-con1-pipe</key>
-				<data>
-				EgAAAA==
-				</data>
-				<key>framebuffer-con2-enable</key>
-				<data>
-				AQAAAA==
-				</data>
-				<key>framebuffer-con2-pipe</key>
-				<data>
-				EgAAAA==
-				</data>
-				<key>framebuffer-con3-enable</key>
-				<data>
-				AQAAAA==
-				</data>
-				<key>framebuffer-con3-pipe</key>
-				<data>
-				EgAAAA==
 				</data>
 				<key>model</key>
 				<string>Intel Iris Pro Graphics 580</string>
@@ -511,43 +469,6 @@
 				<string>Contents/Info.plist</string>
 			</dict>
 		</array>
-		<key>Patch</key>
-		<array>
-			<dict>
-				<key>Base</key>
-				<string></string>
-				<key>Comment</key>
-				<string>AppleGraphicsDevicePolicy patch</string>
-				<key>Count</key>
-				<integer>1</integer>
-				<key>Enabled</key>
-				<false/>
-				<key>Find</key>
-				<data>
-				Ym9hcmQtaWQ=
-				</data>
-				<key>Identifier</key>
-				<string>com.apple.driver.AppleGraphicsDevicePolicy</string>
-				<key>Limit</key>
-				<integer>0</integer>
-				<key>Mask</key>
-				<data>
-				</data>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>Replace</key>
-				<data>
-				Ym9hcmQtaXg=
-				</data>
-				<key>ReplaceMask</key>
-				<data>
-				</data>
-				<key>Skip</key>
-				<integer>0</integer>
-			</dict>
-		</array>
 		<key>Quirks</key>
 		<dict>
 			<key>AppleCpuPmCfgLock</key>
@@ -679,7 +600,7 @@
 			<key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
 			<dict>
 				<key>boot-args</key>
-				<string>agdpmod=vit9696</string>
+				<string></string>
 			</dict>
 		</dict>
 	</dict>
