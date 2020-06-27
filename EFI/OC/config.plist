@@ -77,6 +77,20 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
+				<string>change _WAK to XWAK</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				X1dBSw==
+				</data>
+				<key>Replace</key>
+				<data>
+				WFdBSw==
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
 				<string>change XDCI._STA to XDCI.XSTA</string>
 				<key>Enabled</key>
 				<true/>
@@ -87,6 +101,20 @@
 				<key>Replace</key>
 				<data>
 				WERDSS5YU1RB
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>change NTFY to XTFY</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				TlRGWQ==
+				</data>
+				<key>Replace</key>
+				<data>
+				WFRGWQ==
 				</data>
 			</dict>
 		</array>
@@ -124,6 +152,8 @@
 			<true/>
 			<key>ForceExitBootServices</key>
 			<false/>
+			<key>ProvideMaxSlide</key>
+			<integer>0</integer>
 			<key>ProtectMemoryRegions</key>
 			<false/>
 			<key>ProtectUefiServices</key>
@@ -508,14 +538,12 @@
 			<string>None</string>
 			<key>HideAuxiliary</key>
 			<true/>
-			<key>HideSelf</key>
-			<true/>
 			<key>PickerAttributes</key>
 			<integer>0</integer>
 			<key>PickerAudioAssist</key>
 			<false/>
 			<key>PickerMode</key>
-			<string>External</string>
+			<string>Builtin</string>
 			<key>PollAppleHotKeys</key>
 			<true/>
 			<key>ShowPicker</key>
@@ -526,6 +554,10 @@
 		<key>Debug</key>
 		<dict>
 			<key>AppleDebug</key>
+			<false/>
+			<key>ApplePanic</key>
+			<false/>
+			<key>SysReport</key>
 			<false/>
 			<key>DisableWatchDog</key>
 			<false/>
@@ -638,6 +670,8 @@
 		<dict>
 			<key>EnableJumpstart</key>
 			<true/>
+			<key>GlobalConnect</key>
+			<false/>
 			<key>HideVerbose</key>
 			<true/>
 			<key>JumpstartHotPlug</key>
@@ -651,7 +685,6 @@
 		<true/>
 		<key>Drivers</key>
 		<array>
-			<string>ApfsDriverLoader.efi</string>
 			<string>VboxHfs.efi</string>
 			<string>AppleGenericInput.efi</string>
 			<string>OpenRuntime.efi</string>
@@ -680,8 +713,6 @@
 			<false/>
 			<key>Resolution</key>
 			<string>Max</string>
-			<key>DirectGopCacheMode</key>
-			<string></string>
 			<key>SanitiseClearScreen</key>
 			<false/>
 			<key>TextRenderer</key>
@@ -730,6 +761,8 @@
 			<true/>
 			<key>RequestBootVarRouting</key>
 			<true/>
+			<key>TscSyncTimeout</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 </dict>
