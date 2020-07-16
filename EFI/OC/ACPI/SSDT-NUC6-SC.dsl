@@ -37,21 +37,6 @@ DefinitionBlock ("", "SSDT", 2, "hack", "_NUC6-SC", 0x00000000)
         Name (FAKH, Zero)
     }
 
-    Method (XOSI, 1, NotSerialized)
-    {
-        Local0 = Package (0x07)
-            {
-                "Windows", 
-                "Windows 2001", 
-                "Windows 2001 SP2", 
-                "Windows 2006", 
-                "Windows 2006 SP1", 
-                "Windows 2009", 
-                "Windows 2012"
-            }
-        Return ((Ones != Match (Local0, MEQ, Arg0, MTR, Zero, Zero)))
-    }
-
     Scope (_SB.PCI0)
     {
         Scope (IGPU)

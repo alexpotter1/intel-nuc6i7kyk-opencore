@@ -49,20 +49,6 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>change _OSI to XOSI</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				X09TSQ==
-				</data>
-				<key>Replace</key>
-				<data>
-				WE9TSQ==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>change _DSM to XDSM</string>
 				<key>Enabled</key>
 				<false/>
@@ -73,20 +59,6 @@
 				<key>Replace</key>
 				<data>
 				WERTTQ==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>change _WAK to XWAK</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				X1dBSw==
-				</data>
-				<key>Replace</key>
-				<data>
-				WFdBSw==
 				</data>
 			</dict>
 			<dict>
@@ -107,7 +79,7 @@
 				<key>Comment</key>
 				<string>change NTFY to XTFY</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>
 				TlRGWQ==
@@ -167,7 +139,7 @@
 			<key>SignalAppleOS</key>
 			<false/>
 			<key>SyncRuntimePermissions</key>
-			<false/>
+			<true/>
 		</dict>
 	</dict>
 	<key>DeviceProperties</key>
@@ -693,7 +665,7 @@
 		<true/>
 		<key>Drivers</key>
 		<array>
-			<string>VboxHfs.efi</string>
+			<string>VBoxHfs.efi</string>
 			<string>AppleGenericInput.efi</string>
 			<string>OpenRuntime.efi</string>
 			<string>OpenCanopy.efi</string>
