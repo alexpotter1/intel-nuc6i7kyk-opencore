@@ -1,8 +1,9 @@
-WhateverGreen	acidanthera
-Lilu	acidanthera
-AppleALC	acidanthera
-NVMeFix	acidanthera
-VirtualSMC	acidanthera
-CPUFriend	acidanthera
-IntelBluetoothFirmware	zxystd
-IntelMausiEthernet	Mieze
+WhateverGreen	acidanthera	1     
+Lilu	acidanthera	1
+AppleALC	acidanthera	1
+NVMeFix	acidanthera	1
+VirtualSMC	acidanthera	1
+CPUFriend	acidanthera	1
+IntelMausiEthernet	Mieze	1
+USBInjectAll	RehabMan	1
+IntelBluetoothFirmware	zxystd	0

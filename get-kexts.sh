@@ -1,38 +1,111 @@
 #!/bin/bash
 
-echo "Updating required kexts..."
+join () {
+    local IFS="$1"
+    shift
+    echo "$*"
+}
+
+xcode-select --install
+
+wifi_enabled=0
+lilu_friends=()
+github=()
+echo ""
+read -p 'Do you want to enable Intel WiFi support? (experimental) [y/N]: ' wifi_input
+
+# lowercase
+wifi_input=$(echo "$wifi_input" | tr '[:upper:]' '[:lower:]')
+if [[ $wifi_input == 'y' ]]; then
+    echo 'Enabled Intel WiFi support'
+    echo 'This kext is not considered production-ready yet. Use at own risk.'
+    echo ""
+    wifi_enabled=1
+    sleep 1
+fi
+
+if [[ $wifi_enabled -eq 1 ]]; then
+    # remove newline, add new info and re-append newline
+    perl -pi -e 'chomp if eof' kexts.txt
+    echo -e "\nOpenIntelWireless-Factory	1hbb	0" >> kexts.txt
+fi
+
+itlwm_enabled_already=$(/usr/libexec/PlistBuddy -c "Print :Kernel:Add:9:Enabled" EFI/OC/config.plist)
+if [ "$wifi_enabled" -eq 0 ] && [[ "$itlwm_enabled_already" == "true" ]]; then
+    echo "Resetting itlwm enabled state in config.plist"
+    /usr/libexec/PlistBuddy -c "Set :Kernel:Add:9:Enabled false" EFI/OC/config.plist
+fi
 
 while IFS=$'\t' read -r -a kext_lines
 do
-    echo "Downloading ${kext_lines[0]}"
-    url=$(curl -s https://api.github.com/repos/${kext_lines[1]}/${kext_lines[0]}/releases/latest | jq --raw-output '.assets[0] | .browser_download_url')
-    echo "Fetching from $url"
-    (cd EFI/OC/Kexts; curl --silent -LOJ $url)
-    echo "Extracting ${kext_lines[0]}"
-    if [[ "${kext_lines[0]}" = "VirtualSMC" ]]; then
-        (cd EFI/OC/Kexts; find . -name "$(echo ${kext_lines[0]} | cut -c1-5)*.zip" -type f -exec unzip -o "{}" "Kexts/*SMC*.kext/*" \;; find . -name "$(echo ${kext_lines[0]} | cut -c1-5)*.zip" -type f -delete)
-        (cd EFI/OC/Kexts; rsync -a Kexts/ .; rm -r Kexts)
+    if [[ ${kext_lines[2]} -eq 1 ]]
+    then
+        lilu_friends+=( ${kext_lines[0]} )
     else
-        (cd EFI/OC/Kexts; find . -name "$(echo ${kext_lines[0]} | cut -c1-5)*.zip" -type f -exec unzip -o "{}" "${kext_lines[0]}.kext/*" \;; find . -name "$(echo ${kext_lines[0]} | cut -c1-5)*.zip" -type f -delete)
+        github+=( ${kext_lines[0]} ${kext_lines[1]} )
     fi
 done < kexts.txt
 
-# IntelMausiEthernet.kext doesn't have a GitHub release, so manually build it
-echo "Building IntelMausiEthernet from source..."
-cd EFI/OC/Kexts && git clone https://github.com/Mieze/IntelMausiEthernet.git
-cd IntelMausiEthernet
-# not sure if user has Xcode CLI tools installed, try and install anyway
-# not a problem if they already have it
-xcode-select --install 2> /dev/null
-xcodebuild -configuration Release
-mv build/Release/IntelMausiEthernet.kext ../
-cd ../
-rm -rf IntelMausiEthernet
+if [ ! -d lilu-and-friends ]; then
+    git clone https://github.com/corpnewt/lilu-and-friends
+fi
 
-# Get UIA, no GitHub release
-echo "Downloading USBInjectAll.kext..."
-curl --silent -LOJ https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/RehabMan-USBInjectAll-2018-1108.zip
-find . -name "RehabMan-USBInjectAll*.zip" -type f -exec unzip -o "{}" "Release/USBInjectAll.kext/*" \;; find . -name "RehabMan-USBInjectAll*.zip" -type f -delete
-mv Release/USBInjectAll.kext .
-rm -r Release
-echo "Finished building kexts!"
+echo ""
+echo "Using Lilu-and-Friends by CorpNewt to build kexts"
+echo "Available at: https://github.com/corpnewt/lilu-and-friends"
+echo ""
+cd lilu-and-friends
+kext_list=$(join , "${lilu_friends[@]}")
+
+sleep 2
+chmod +x ./Run.command
+./Run.command -rk ${kext_list[*]}
+
+echo ""
+echo "Some kexts weren't available to build from source."
+echo "Attempting to find their GitHub release"
+echo ""
+
+sleep 2
+
+for ((i=0; i<${#github[@]}; i++))
+do
+    echo "Downloading ${github[$i]}"
+    url=$(curl -sL https://api.github.com/repos/${github[$i+1]}/${github[$i]}/releases | jq --raw-output '.[0].assets[0] | .browser_download_url')
+    echo "Fetching from $url"
+    (( i++ ))
+    (cd Kexts; curl --silent -LOJ $url)
+done
+
+echo ""
+echo "Extracting and moving kexts"
+cd Kexts
+find . -name "*.zip" -exec unzip {} \;
+find . -name "*.kext" -exec cp -r {} ../../EFI/OC/Kexts/ \;
+
+if [[ $wifi_enabled -eq 1 ]]; then
+    find . -name "HeliPort.app" -exec cp -r {} ../../EFI/OC/ \;
+    echo ""
+    echo "The Intel WiFi driver (itlwm.kext) has been moved to EFI/OC/Kexts."
+    sleep 2
+    echo "The controlling app, HeliPort, has been moved to EFI/OC."
+    sleep 2
+    echo "After installation, mount your EFI and copy the HeliPort app to /Applications."
+    sleep 2
+    echo "From there, it will provide control for connecting to wireless networks."
+    sleep 2
+    echo "You can also tell it to launch at login."
+    sleep 2
+    echo "For more help, go to https://github.com/OpenIntelWireless."
+    sleep 2
+    echo ""
+
+    echo "Patching config.plist"
+    /usr/libexec/PlistBuddy -c "Set :Kernel:Add:9:Enabled true" ../../EFI/OC/config.plist
+    sed -i '' -e '$ d' ../../kexts.txt
+fi
+
+cd ../../
+echo ""
+echo "Cleaning up"
+rm -rf lilu-and-friends
