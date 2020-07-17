@@ -18,6 +18,7 @@ Currently running: **macOS Catalina**
 What works:
 * Booting
 * Patched EC **(required for Catalina and up)**
+* Intel WiFi (experimental, optional) 
 * Graphics acceleration with Metal support (credit: WhateverGreen)
   * Some customised framebuffer patching included...
   * Iris Pro 580 with DVMT pre-alloc
@@ -46,7 +47,6 @@ What doesn't (yet) work:
   * Appears to work if the Thunderbolt device is connected at boot, but any hotplugging/sleep stops it from working
 * SD card reader (PCIe, unlikely to ever work)
 * TOSLINK optical jack (disabled in SSDT)
-* WiFi (macOS does not support Intel chipsets, unlikely to work until a kext is reverse-engineered)
 * Secure Boot (OpenCore should support this, just a case of enabling)
 
 Known quirks:
@@ -55,7 +55,7 @@ Known quirks:
   * I use the boot manager to switch, although there is a fork of OpenCore that only selectively applies ACPI patching
   
 ## How to get started?
-#### BIOS configuration
+### BIOS configuration
 Main things that you **must** do here are:
 * Disable Intel Virtualization Technology for Directed IO (VT-d)
   * I don't believe macOS supports this
@@ -65,7 +65,7 @@ Main things that you **must** do here are:
   * OpenCore technically supports this - I haven't found the time to setup yet
 * Set `IGD Minimum Memory` to 64MB and `IGD Aperture Size` to 128/256MB
 
-#### Repository setup
+### Repository setup
 
 **Note: The example config.plist includes null strings for SMBIOS values. Do not use this, it's unlikely to work correctly.**
   * I didn't want to make my personal SMBIOS values public (I'm signed into iCloud), but the setup script can generate a new one for you.
@@ -79,7 +79,7 @@ Note: If you have an OpenCore `config.plist` you'd like to use, specify this wit
   * **The example config does not include an SMBIOS**
     * Best to make your own one, the setup scripts do this for you! (credit: GenSMBIOS by CorpNewt)
 
-##### If you're generating an SMBIOS
+#### If you're generating an SMBIOS
 * Follow the steps with GenSMBIOS
 * Install `macserial` first if you haven't (press 1?)
 * Tell the script where the default config.plist is (`EFI/OC/config.plist`)
@@ -96,15 +96,27 @@ Note: If you have an OpenCore `config.plist` you'd like to use, specify this wit
   * Then tell the script which partition is your EFI partition
     * If you're creating a USB, make sure you use the USB's EFI partition (e.g. `disk4s1`)
     * If you're installing to the current hard drive's EFI partition **(caution!)**, use `disk0s1`
+
+#### If you want WiFi
+When performing setup, the script will ask you if you want to enable Intel WiFi support (disabled by default). Type 'y' to enable.
+
+After macOS installation, to get the companion app 'HeliPort' working:
+1. Mount your EFI with `sudo diskutil mount /dev/disk0s1`
+2. Go to `/Volumes/EFI/EFI/OC` (your root OpenCore folder)
+3. Copy `HeliPort.app` to `/Applications`
+4. Open the app. It should be in your menu bar. Enable `Launch at Login` is recommended.
+
+Full credit to this goes to zxystd/OpenIntelWireless for this work. <br />
+**Note:** I will not provide support for this kext, it is provided as-is and should **not** be considered production-ready. Contact the developer for support.
     
 ## Credits
 Some people who were invaluable in helping me get setup, whether through informative forum posts, kexts, or custom ACPI SSDTs:
 * RehabMan - his comprehensive thread for Mojave and the NUC6i7KYK on [tonymacx86.com](https://www.tonymacx86.com/threads/guide-intel-skylake-nuc6-and-skull-canyon-using-clover-uefi-nuc6i5syk-nuc6i7kyk-etc.261708/)
 * [acidanthera](https://github.com/acidanthera) - for OpenCore, WhateverGreen, Lilu, AppleALC, NVMeFix, VirtualSMC, probably more
 * [This OpenCore Vanilla guide - Skylake](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/)
-* [zxystd](https://github.com/zxystd/IntelBluetoothFirmware) for his awesome Intel Bluetooth firmware kext
+* [zxystd](https://github.com/zxystd/IntelBluetoothFirmware) for his awesome Intel Bluetooth firmware/Intel WiFi kexts
 * [Mieze](https://github.com/Mieze/IntelMausiEthernet) for the amazing Intel Ethernet kext, without this, the NUC is kinda useless
-* [CorpNewt](https://github.com/CorpNewt) for the very nice GenSMBIOS tool
+* [CorpNewt](https://github.com/CorpNewt) for the very nice GenSMBIOS tool, and Lilu-and-Friends used to help get kexts
 * [Piker-Alpha](https://github.com/Piker-Alpha/) for `ssdtPRgen.sh` to create a custom SSDT for power management
 * Probably many more talented hackintosh community members who I've missed when researching for hours and hours
   * Please let me know if I didn't include you - absences are completely accidental, promise :P
