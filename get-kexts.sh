@@ -65,13 +65,21 @@ echo ""
 echo "Some kexts weren't available to build from source."
 echo "Attempting to find their GitHub release"
 echo ""
-
 sleep 2
+
+if [ -f errors.txt ]; then
+    rm errors.txt
+fi
+
+echo "Fetching jq"
+echo ""
+curl -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64 --output jq
+chmod +x ./jq || echo "ERROR: jq" >> errors.txt
 
 for ((i=0; i<${#github[@]}; i++))
 do
     echo "Downloading ${github[$i]}"
-    url=$(curl -sL https://api.github.com/repos/${github[$i+1]}/${github[$i]}/releases | jq --raw-output '.[0].assets[0] | .browser_download_url')
+    url=$(curl -L https://api.github.com/repos/${github[$i+1]}/${github[$i]}/releases | ./jq --raw-output '.[0].assets[0] | .browser_download_url')
     echo "Fetching from $url"
     (( i++ ))
     (cd Kexts; curl --silent -LOJ $url)
@@ -109,6 +117,19 @@ if [[ $wifi_enabled -eq 1 ]]; then
     echo "Patching config.plist"
     /usr/libexec/PlistBuddy -c "Set :Kernel:Add:9:Enabled true" ../../EFI/OC/config.plist
     sed -i '' -e '$ d' ../../kexts.txt
+fi
+
+if [ -f ../errors.txt ]; then
+    echo ""
+    echo "ERROR ENCOUNTERED DURING BUILD"
+    sleep 2
+    echo "Errors were encountered downloading additional kexts."
+    sleep 2
+    echo "This will result in the NUC not being able to boot correctly."
+    sleep 2
+    echo "Please try again, or if it persists, consider raising an issue on the GitHub page."
+    echo ""
+    echo "BUILD FAILED"
 fi
 
 cd ../../
