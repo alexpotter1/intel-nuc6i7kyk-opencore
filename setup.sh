@@ -10,6 +10,13 @@ usage(){
     echo "----------------------"
 }
 
+unameOut="$(uname -s)"
+platform=""
+case "${unameOut}" in
+    Darwin*) platform=Mac;;
+    *)       platform="UNSUPPORTED:${unameOut}"
+esac
+
 while [ "$1" != "" ]; do
     case $1 in
         -f | --file )   shift
@@ -25,6 +32,19 @@ while [ "$1" != "" ]; do
     shift
 done
 
+echo "Building OpenCore configuration for Intel NUC6 Skull Canyon"
+sleep 1
+echo "Please build only on a Mac. Other systems are unsupported."
+echo "Also ensure you have the latest Xcode installed from the App Store."
+sleep 2
+
+if [ "$platform" != "Mac" ]; then
+    echo ""
+    echo "It doesn't look like you're running macOS. Please use a Mac to use this script."
+    echo "You can always build the configuration manually, also!"
+    sleep 2
+    exit 1
+fi
 
 if [ ! -z "$config_file" ]; then
     if [ ! -f $config_file ]; then

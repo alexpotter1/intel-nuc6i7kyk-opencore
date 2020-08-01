@@ -14,6 +14,10 @@ I've tried to keep a lot of this fairly stock and without too many kexts and man
 OpenCore is great for this, hence why I use this over Clover.
 
 Currently running: **macOS Catalina**
+
+**Note:** This script requires a computer running macOS to run correctly, with Xcode+CLI tools installed from the App Store. Attempting to run on a non-Mac, or a Mac without Xcode
+may not build the configuration in the right way and will most likely not boot.
+
 ## What works and what doesn't
 What works:
 * Booting
@@ -91,8 +95,7 @@ Note: If you have an OpenCore `config.plist` you'd like to use, specify this wit
   * I didn't include them in the repo as they get outdated fast, best to get latest versions
 5. Run `chmod +x ./export.sh && sudo ./export.sh` to copy the EFI to your EFI System Partition **(as root)**
   * To do this, you need to know where your EFI partition is - **make sure you get the right one to avoid data loss!**
-  * On Mac: `diskutil list`, find the right disk
-  * On Linux: `fdisk`, etc should do the trick
+  * `diskutil list`, find the right disk
   * Then tell the script which partition is your EFI partition
     * If you're creating a USB, make sure you use the USB's EFI partition (e.g. `disk4s1`)
     * If you're installing to the current hard drive's EFI partition **(caution!)**, use `disk0s1`

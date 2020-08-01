@@ -3,21 +3,18 @@
 unameOut="$(uname -s)"
 platform=""
 case "${unameOut}" in
-    Linux*)  platform=Linux;;
     Darwin*) platform=Mac;;
     *)       platform="UNSUPPORTED:${unameOut}"
 esac
 
 echo "Attempting to mount EFI folder..."
-read -p "Enter the disk identifier for EFI partition (e.g. disk0s1, sdb1, etc): " disk_id
+read -p "Enter the disk identifier for EFI partition (e.g. disk0s1): " disk_id
 
 esp_path=""
-if [ "$platform" == "Linux" ]; then
-    esp_path="/mnt/ESP"
-elif [ "$platform" == "Mac" ]; then
+if [ "$platform" == "Mac" ]; then
     esp_path="/Volumes/ESP"
 else
-    echo "Unsupported platform! Use a Mac or Linux machine!"
+    echo "Unsupported platform! Use a Mac!"
     exit 1
 fi
 
