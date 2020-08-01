@@ -81,6 +81,12 @@ echo ""
 echo "Extracting and moving kexts"
 cd Kexts
 find . -name "*.zip" -exec unzip {} \;
+find . -name "IntelBluetoothInjector.kext" -type d -exec rm -r {} +
+find . -name "XHCI-unsupported.kext" -type d -exec rm -r {} +
+if [[ $wifi_enabled -eq 1 ]]; then
+    find . -name "itlwmx.kext" -type d -exec rm -r {} +
+fi
+
 find . -name "*.kext" -exec cp -r {} ../../EFI/OC/Kexts/ \;
 
 if [[ $wifi_enabled -eq 1 ]]; then
