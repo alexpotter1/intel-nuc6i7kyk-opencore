@@ -13,7 +13,7 @@ If you know how to fix some things, feel free to raise an issue, fork and add a 
 I've tried to keep a lot of this fairly stock and without too many kexts and manual patching, as I want this to be as close as possible to a real Mac.
 OpenCore is great for this, hence why I use this over Clover.
 
-Currently running: **macOS Catalina**
+Currently running: **macOS Big Sur Beta**
 
 **Note:** This script requires a computer running macOS to run correctly, with Xcode+CLI tools installed from the App Store. Attempting to run on a non-Mac, or a Mac without Xcode
 may not build the configuration in the right way and will most likely not boot.
