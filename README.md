@@ -18,6 +18,18 @@ Currently running: **macOS Big Sur Beta**
 **Note:** This script requires a computer running macOS to run correctly, with Xcode+CLI tools installed from the App Store. Attempting to run on a non-Mac, or a Mac without Xcode
 may not build the configuration in the right way and will most likely not boot.
 
+## Black80211 variant
+This variant uses the itlwm driver modified by `usr-sse2`, along with their `Black80211` kext which allows itlwm to be controlled using the native Apple WiFi menu interface.
+
+HeliPort is no longer required with this version.
+
+The driver is thus recognised by macOS as a WiFi adapter, rather than an Ethernet device. 
+This has the side effect of allowing Location Services to work correctly.
+
+![black80211](Resources/black80211.png)
+
+**NOTE: `itlwm` is experimental anyway, and this kext is still in alpha. There will be bugs here, and it won't be perfect. Hence why this is not in master. But you can try it out if you want.<br/> As with `itlwm`, I will not provide support - go here https://github.com/usr-sse2/Black80211-Catalina for help.**
+
 ## What works and what doesn't
 What works:
 * Booting
