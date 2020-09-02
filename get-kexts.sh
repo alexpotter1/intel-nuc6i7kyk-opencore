@@ -92,9 +92,22 @@ cd Kexts
 find . -name "*.zip" -exec unzip {} \;
 find . -name "IntelBluetoothInjector.kext" -type d -exec rm -r {} +
 find . -name "XHCI-unsupported.kext" -type d -exec rm -r {} +
+
 if [[ $wifi_enabled -eq 1 ]]; then
     find . -name "itlwmx.kext" -type d -exec rm -r {} +
-    find . -name "Catalina" -type d -exec rm -r {} +
+
+    read -p 'Is your operating system Big Sur (10.11)? [y/N]: ' big_sur
+    # lowercase result
+    big_sur=$(echo "$big_sur" | tr '[:upper:]' '[:lower:]')
+    if [[ $big_sur == 'y' ]]; then
+        echo "Installing Black80211 for Big Sur"
+        find . -name "Catalina" -type d -exec rm -r {} +
+    else
+        echo "Installing Black80211 for Catalina"
+        find . -name "Big Sur" -type d -exec rm -r {} +
+    fi
+
+    sleep 1
 fi
 
 find . -name "*.kext" -exec cp -r {} ../../EFI/OC/Kexts/ \;
