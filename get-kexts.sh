@@ -98,17 +98,10 @@ fi
 find . -name "*.kext" -exec cp -r {} ../../EFI/OC/Kexts/ \;
 
 if [[ $wifi_enabled -eq 1 ]]; then
-    find . -name "HeliPort.app" -exec cp -r {} ../../EFI/OC/ \;
     echo ""
-    echo "The Intel WiFi driver (itlwm.kext) has been moved to EFI/OC/Kexts."
+    echo "The Intel WiFi driver (AirportItlwm.kext) has been moved to EFI/OC/Kexts."
     sleep 2
-    echo "The controlling app, HeliPort, has been moved to EFI/OC."
-    sleep 2
-    echo "After installation, mount your EFI and copy the HeliPort app to /Applications."
-    sleep 2
-    echo "From there, it will provide control for connecting to wireless networks."
-    sleep 2
-    echo "You can also tell it to launch at login."
+    echo "This should no longer require HeliPort to function."
     sleep 2
     echo "For more help, go to https://github.com/OpenIntelWireless."
     sleep 2
