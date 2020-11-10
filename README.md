@@ -2,13 +2,18 @@
 
 ![macOS-catalina](Resources/about-mac.png)
 
+## Important Note
+I no longer maintain this repository, because I no longer have this device to test newer versions of OpenCore or macOS.
+I will also not be responding to support queries. <br />
+
+Use this repository as a guide and for understanding, but don't expect that everything will work in the future. Like all Hackintosh builds, it is recommended to understand the process of configuring your system from scratch with the [Dortania guides](https://dortania.github.io/OpenCore-Install-Guide/) and [Reddit forums](https://reddit.com/r/hackintosh). Thanks <3
+
 ## What is this?
 This repository tracks an OpenCore bootloader configuration for the Intel Skull Canyon NUC.<br />
 This configuration was created by me with help from others (see credits) to allow the NUC to run macOS.
 If you wish to try and run macOS on your Skull Canyon, you can start here.
 
 This is for my own personal use, and as such I haven't tried to get every single thing working.<br />
-If you know how to fix some things, feel free to raise an issue, fork and add a PR!
 
 I've tried to keep a lot of this fairly stock and without too many kexts and manual patching, as I want this to be as close as possible to a real Mac.
 OpenCore is great for this, hence why I use this over Clover.
